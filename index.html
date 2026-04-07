@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Online Code Editor</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    h1 {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    #editor {
+      height: 450px;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #333;
+    }
+
+    #ans {
+      background: #000;
+      color: #0f0;
+      padding: 12px;
+      min-height: 150px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    #inputBox {
+      background: #2d2d2d;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 5px;
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    select {
+      background: #2d2d2d !important;
+      color: #fff !important;
+      border: 1px solid #444 !important;
+    }
+
+    button {
+      font-weight: 500;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+</head>
+
+<body>
+
+  <h1 class="text-center mt-3">⚡ Online Code Editor</h1>
+
+  <!-- Language -->
+  <div class="text-center mb-3">
+    <select id="myselect" class="form-control w-25 mx-auto" onchange="onSelectChange(this.value.trim())">
+      <option value="53">C++</option>
+      <option value="62">Java</option>
+      <option value="70">Python</option>
+    </select>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+
+      <!-- LEFT -->
+      <div class="col-md-8">
+        <h5>Code</h5>
+        <div id="editor"></div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-md-4 d-flex flex-column">
+
+        <!-- INPUT BOX -->
+        <h6>Input</h6>
+        <textarea id="inputBox" placeholder="Enter input here..."></textarea>
+
+        <!-- RUN BUTTON -->
+        <button class="btn btn-success mb-2">▶ Run Code</button>
+
+        <!-- OUTPUT -->
+        <h6>Output</h6>
+        <pre id="ans"></pre>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="texteditor.js"></script>
+
+  <script>
+    function onSelectChange(selectedVal) {
+      if (selectedVal) {
+        $("button").off("click");
+        codeEditor(selectedVal);
+      }
+    }
+
+    window.onload = function () {
+      codeEditor("53");
+    };
+  </script>
+
+</body>
+</html>
